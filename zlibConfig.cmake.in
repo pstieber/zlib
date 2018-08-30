@@ -1,0 +1,9 @@
+@PACKAGE_INIT@
+
+SET_AND_CHECK(zlib_INCLUDE_DIR @PACKAGE_zlib_DIRNAME_include@)
+
+if(NOT TARGET zlib)
+  include(${CMAKE_CURRENT_LIST_DIR}/zlibExports.cmake)
+endif()
+
+set(zlib_INCLUDE_DIRS ${zlib_INCLUDE_DIR})
