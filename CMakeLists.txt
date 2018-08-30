@@ -92,17 +92,18 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_SOURCE_DIR})
 if(NOT SKIP_INSTALL_LIBRARIES)
   set(ProjectName zlib)
 
-  set(${ProjectName}_DIRNAME "${ProjectName}-${${ProjectName}_VERSION}")
+  set(${ProjectName}_DIRNAME "${ProjectName}-${VERSION}")
   set(${ProjectName}_DIRNAME_lib ${INSTALL_LIB_DIR})
   set(${ProjectName}_DIRNAME_bin ${INSTALL_BIN_DIR})
   set(${ProjectName}_DIRNAME_include ${INSTALL_INC_DIR})
+  set(${ProjectName}_DIRNAME_config "${${ProjectName}_DIRNAME_lib}/${${ProjectName}_DIRNAME}")
 
   include(CMakePackageConfigHelpers)
   CONFIGURE_PACKAGE_CONFIG_FILE(
     "${CMAKE_CURRENT_SOURCE_DIR}/${ProjectName}Config.cmake.in"
     "${CMAKE_CURRENT_BINARY_DIR}/${ProjectName}Config.cmake"
     INSTALL_DESTINATION
-      ${${ProjectName}_DIRNAME_lib}/${${ProjectName}_DIRNAME}
+      ${${ProjectName}_DIRNAME_config}
     PATH_VARS
       ${ProjectName}_DIRNAME_bin
       ${ProjectName}_DIRNAME_lib
@@ -118,7 +119,7 @@ if(NOT SKIP_INSTALL_LIBRARIES)
     EXPORT
       ${ProjectName}Exports
     DESTINATION
-      ${${ProjectName}_DIRNAME_lib}
+      ${${ProjectName}_DIRNAME_config}
     )
 
   install(
@@ -126,7 +127,7 @@ if(NOT SKIP_INSTALL_LIBRARIES)
       ${CMAKE_CURRENT_BINARY_DIR}/${ProjectName}Config.cmake
       ${CMAKE_CURRENT_BINARY_DIR}/${ProjectName}ConfigVersion.cmake
     DESTINATION
-      ${${ProjectName}_DIRNAME_lib}
+      ${${ProjectName}_DIRNAME_config}
     )
 endif()
 
