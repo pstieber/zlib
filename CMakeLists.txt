@@ -102,7 +102,7 @@ if(NOT SKIP_INSTALL_LIBRARIES)
     "${CMAKE_CURRENT_SOURCE_DIR}/${ProjectName}Config.cmake.in"
     "${CMAKE_CURRENT_BINARY_DIR}/${ProjectName}Config.cmake"
     INSTALL_DESTINATION
-      ${${ProjectName}_DIRNAME_lib}
+      ${${ProjectName}_DIRNAME_lib}/${${ProjectName}_DIRNAME}
     PATH_VARS
       ${ProjectName}_DIRNAME_bin
       ${ProjectName}_DIRNAME_lib
